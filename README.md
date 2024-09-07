@@ -41,6 +41,10 @@ Users should be able to:
 #
 ![ss](https://github.com/Prashant2468/AgeCalculator/blob/main/design/age4.png)
 
+* Responsive mobile UI
+#
+![ss](https://github.com/Prashant2468/AgeCalculator/blob/main/design/age5.png)
+
 #
 ### 📝 What you will learn ? 📝 
 
