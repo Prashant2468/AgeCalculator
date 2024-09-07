@@ -8,7 +8,7 @@ This app simply calculate the how old are you in form of years , months and days
 [![JS](https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](https://github.com/Prashant2468/Portfolio/blob/master/demo.js)
 #
 ### 🔗Links🔗
-- Live Site URL:=<a href="https://prashant2468.github.io/AgeCalculator/" target="_blank">** Age Calculator ** 🚀</a>
+- Live Site URL:=<a href="https://prashant2468.github.io/AgeCalculator/" target="_blank"> Age Calculator  🚀</a>
 
 #
 ### 🎯 The challenge 🎯
