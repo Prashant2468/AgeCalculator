@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Age calculator app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .attribution {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%);
+        color: hsl(0, 1%, 44%);
+        font-family: Poppins;
+      }
+      .attribution a {
+        color: hsl(259, 100%, 65%);
+        text-decoration: none;
+      }
+      .container {
+        height: 100vh;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(0, 0%, 94%);
+      }
+      .container .card {
+        height: 66vh;
+        width: 58%;
+        background-color: hsl(0, 0%, 100%);
+        /* background-color: #f0f8ff; */
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 150px;
+        padding-bottom: 14px;
+        /* display: flex; */
+        justify-content: center;
+      }
+      .container .card .datebox {
+        height: 25%;
+        width: 90%;
+        margin-top: 30px;
+        display: flex;
+        margin-left: 30px;
+        align-items: center;
+      }
+      .container .card .datebox .innerdatebox {
+        height: 80%;
+        width: 23%;
+        /* margin-left: 5px; */
+      }
+      .innerdatebox p {
+        color: rgba(128, 128, 128, 0.951);
+        font-family: Poppins;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        padding-left: 2px;
+      }
+      .innerdatebox input {
+        width: 80%;
+        height: 57%;
+        background-color: white;
+        border: 2px solid hsl(0, 0%, 94%);
+        border-radius: 8px;
+        margin-top: 2px;
+        color: hsl(0, 0%, 8%);
+        font-size: 22px;
+        font-weight: 700;
+        padding-left: 15px;
+        /* color: hsl(0, 0%, 50%); */
+        outline: none;
+      }
+      input:focus {
+        border: 1px solid hsl(259, 100%, 65%);
+      }
+      input::placeholder {
+        color: rgba(128, 128, 128, 0.93);
+      }
+
+      .datebox .innerdatebox:nth-child(1) {
+        margin-left: 10px;
+      }
+      .datebox .innerdatebox:nth-child(2) {
+        margin-left: 10px;
+      }
+      .datebox .innerdatebox:nth-child(3) {
+        margin-left: 10px;
+      }
+
+      #day_span {
+        color: hsl(0, 100%, 67%);
+        font-family: Poppins;
+        font-size: 11px;
+        text-align: center;
+        display: none;
+      }
+      #year_span {
+        color: hsl(0, 100%, 67%);
+        font-family: Poppins;
+        font-size: 11px;
+        text-align: center;
+        display: none;
+      }
+      #month_span {
+        color: hsl(0, 100%, 67%);
+        font-family: Poppins;
+        font-size: 11px;
+        display: none;
+
+        text-align: center;
+      }
+
+      /* Second container for Design */
+      .designbox {
+        position: relative;
+        width: 100%;
+        height: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .designbox .line {
+        width: 85%;
+        height: 3px;
+        background-color: hsla(0, 0%, 86%, 0.497);
+      }
+      .designbox .round {
+        position: absolute;
+        height: 65px;
+        width: 65px;
+        border-radius: 50px;
+        right: 35px;
+        background-color: hsl(259, 100%, 65%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+      }
+      .designbox .round:active {
+        background-color: hsl(259, 95%, 70%);
+        transform: scale(0.95);
+      }
+
+      /* Third container for reuslt */
+
+      .resultbox {
+        height: fit-content;
+        width: 90%;
+        margin-top: 10px;
+        display: flex;
+      }
+      .resultbox .innerresultbox {
+        height: fit-content;
+        width: 25%;
+        text-align: end;
+      }
+      .resultbox .innerresultbox p {
+        color: hsl(259, 100%, 65%);
+        height: 80px;
+        font-size: 65px;
+        font-weight: 800;
+        font-family: Poppins;
+        font-style: italic;
+      }
+
+      .innertextbox {
+        height: fit-content;
+        width: 25%;
+        margin-left: 10px;
+        text-align: end;
+      }
+      .innertextbox p {
+        color: black;
+        height: 80px;
+        font-size: 65px;
+        font-weight: 800;
+        font-family: Poppins;
+        font-style: italic;
+      }
+
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .years_ans {
+        animation: upside 0.5s ease-in-out;
+      }
+      .months_ans {
+        animation: upside 1s ease-in-out;
+      }
+      .days_ans {
+        animation: upside 1.5s ease-in-out;
+      }
+      @keyframes upside {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+
+      /* Responsive */
+      @media screen and (max-width: 395px) {
+        * {
+          padding: 0;
+        }
+        body {
+          background-color: white;
+        }
+        .container {
+          width: 70vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: hsl(0, 0%, 94%);
+        }
+        .container .card {
+          width: 90%;
+          height: 50%;
+          border-bottom-right-radius: 100px;
+        }
+        .container .card .datebox {
+          width: 100%;
+          margin-left: 15px;
+        }
+        .container .card .datebox .innerdatebox {
+          height: 80%;
+          width: 25%;
+        }
+        .container .card .datebox .innerdatebox input {
+          font-size: 20px;
+        }
+        #day_span {
+          font-size: 9px;
+        }
+        #month_span {
+          font-size: 9px;
+        }
+        #year_span {
+          font-size: 9px;
+        }
+        .designbox {
+          position: relative;
+          width: 100%;
+          height: 5%;
+          display: flex;
+          margin-top: 5px;
+          align-items: center;
+          justify-content: center;
+        }
+        .designbox .line {
+          width: 80%;
+          height: 2px;
+        }
+        .designbox .round {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: hsl(259, 100%, 65%);
+        }
+        .designbox .round img {
+          height: 17px;
+          width: 17px;
+        }
+        .resultbox {
+          height: fit-content;
+          width: 100%;
+        }
+        .resultbox .innerresultbox {
+          height: fit-content;
+          width: 25%;
+          text-align: end;
+        }
+        .resultbox .innerresultbox p {
+          color: hsl(259, 100%, 65%);
+          height: 80px;
+          font-size: 45px;
+          font-weight: 800;
+          font-family: Poppins;
+          font-style: italic;
+        }
+
+        .innertextbox {
+          height: fit-content;
+          width: 60%;
+          text-align: start;
+          margin-left: 10px;
+        }
+        .innertextbox p {
+          color: black;
+          height: 80px;
+          font-size: 45px;
+          font-weight: 800;
+          font-family: Poppins;
+          font-style: italic;
+        }
+        .attribution {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          left: 50%;
+          text-align: center;
+          bottom: 0%;
+          font-size: 11px;
+          transform: translate(-50%);
+          color: hsl(0, 1%, 44%);
+          font-family: Poppins;
+        }
+        .attribution a {
+          color: hsl(259, 100%, 65%);
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function checkDate() {
+        let f = 0;
+
+        const days = parseInt(document.getElementById("day").value);
+        const months = parseInt(document.getElementById("month").value);
+        const years = parseInt(document.getElementById("year").value);
+
+        const dayError = document.getElementById("day_span");
+        const monthError = document.getElementById("month_span");
+        const yearError = document.getElementById("year_span");
+
+        var daybox = document.getElementById("day");
+        var monthbox = document.getElementById("month");
+        var yearbox = document.getElementById("year");
+
+        if (isNaN(days)) {
+          remove();
+          dayError.innerText = "Field not be empty";
+          daybox.style.border = "2px solid red";
+          dayError.style.display = "block";
+          f = 1;
+        }
+        if (isNaN(months)) {
+          remove();
+          monthError.innerText = "Field not be empty";
+          monthbox.style.border = "2px solid red";
+          monthError.style.display = "block";
+          f = 1;
+        }
+        if (isNaN(years)) {
+          remove();
+          yearError.innerText = "Field not be empty";
+          yearbox.style.border = "2px solid red";
+          yearError.style.display = "block";
+          f = 1;
+        }
+
+        if (days < 1 || days > 31) {
+          remove();
+
+          dayError.innerText = "must be valid days";
+          dayError.style.display = "block";
+          daybox.style.border = "2px solid red";
+          f = 1;
+        }
+        if (months < 1 || months > 12) {
+          remove();
+          monthError.innerText = "must be valid month";
+          monthError.style.display = "block";
+          monthbox.style.border = "2px solid red";
+          f = 1;
+        }
+
+        const enteredDate = new Date(years, months - 1, days);
+        const today = new Date();
+        if (years < 1900 || enteredDate > today) {
+          yearError.innerText = "must be valid year";
+          yearError.style.display = "block";
+          yearbox.style.border = "2px solid red";
+          f = 1;
+          remove();
+        }
+        if (
+          days > 30 &&
+          (months == 2 ||
+            months == 4 ||
+            months == 6 ||
+            months == 9 ||
+            months == 11)
+        ) {
+          remove();
+          dayError.innerText = "must be valid days";
+          dayError.style.display = "block";
+          daybox.style.border = "2px solid red";
+          f = 1;
+        }
+        if (
+          days > 31 &&
+          (months == 1 ||
+            months == 3 ||
+            months == 5 ||
+            months == 7 ||
+            months == 8 ||
+            months == 10 ||
+            months == 12)
+        ) {
+          remove();
+          dayError.innerText = "must be valid days";
+          dayError.style.display = "block";
+          daybox.style.border = "2px solid red";
+          f = 1;
+        }
+        if (days > 29 && months == 2) {
+          remove();
+          dayError.innerText = "must be valid days";
+          dayError.style.display = "block";
+          daybox.style.border = "2px solid red";
+          f = 1;
+        }
+        if (days == 29 && months == 2 && years % 4 != 0) {
+          yearError.style.display = "block";
+          yearError.innerText = "must be valid year";
+          yearbox.style.border = "2px solid red";
+          f = 1;
+          remove();
+        }
+
+        if (f == 0) {
+          calculateDate(years + "-" + months + "-" + days);
+        }
+      }
+      function calculateDate(date) {
+        var days_ans = document.getElementById("days_ans");
+        var months_ans = document.getElementById("months_ans");
+        var years_ans = document.getElementById("years_ans");
+
+        const currentDate = new Date();
+        const myDate = new Date(date);
+        const timeDiff = currentDate - myDate;
+        const totalDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+        // Calculate the years difference
+        let year = currentDate.getFullYear() - myDate.getFullYear();
+        // Calculate the months difference
+        let month = currentDate.getMonth() - myDate.getMonth();
+        // Calculate the days difference
+        let day = currentDate.getDate() - myDate.getDate();
+
+        // Adjust if the days difference is negative
+        if (day < 0) {
+          month -= 1;
+          day += new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            0
+          ).getDate();
+        }
+
+        // Adjust if the months difference is negative
+        if (month < 0) {
+          year -= 1;
+          month += 12;
+        }
+
+        if (day > 1 && day < 9) {
+          days_ans.innerText = "0" + day;
+        } else {
+          days_ans.innerText = day;
+        }
+        days_ans.classList.add("days_ans");
+        if (month > 1 && month < 9) {
+          months_ans.innerText = "0" + month;
+        } else {
+          months_ans.innerText = "0" + month;
+        }
+        months_ans.classList.add("months_ans");
+        if (year > 1 && year < 9) {
+          years_ans.innerText = "0" + year;
+        } else {
+          years_ans.innerText = year;
+        }
+        years_ans.classList.add("years_ans");
+      }
+
+      // Arrow function
+
+      remove = () => {
+        setTimeout(() => {
+          var days_ans = document.getElementById("days_ans");
+          var months_ans = document.getElementById("months_ans");
+          var years_ans = document.getElementById("years_ans");
+
+          const days = parseInt(document.getElementById("day").value);
+          const months = parseInt(document.getElementById("month").value);
+          const years = parseInt(document.getElementById("year").value);
+
+          const dayError = document.getElementById("day_span");
+          const monthError = document.getElementById("month_span");
+          const yearError = document.getElementById("year_span");
+
+          var daybox = document.getElementById("day");
+          var monthbox = document.getElementById("month");
+          var yearbox = document.getElementById("year");
+
+          dayError.style.display = "none";
+          monthError.style.display = "none";
+          yearError.style.display = "none";
+          daybox.style.border = "";
+          monthbox.style.border = "";
+          yearbox.style.border = "";
+          daybox.value = "";
+          monthbox.value = "";
+          yearbox.value = "";
+
+          days_ans.innerText = "- -";
+          months_ans.innerText = "- -";
+          years_ans.innerText = "- -";
+        }, 3000);
+      };
+    </script>
+
+    <!-- HTML FILE -->
+
+    <div class="container">
+      <div class="card">
+        <!-- First Container f  or Date -->
+        <div class="datebox">
+          <div class="innerdatebox">
+            <p>DAY</p>
+            <input
+              type="number"
+              min="1"
+              max="31"
+              class="day"
+              id="day"
+              placeholder="DD"
+            />
+            <span id="day_span">Must be valid day.</span>
+          </div>
+          <div class="innerdatebox">
+            <p>MONTH</p>
+            <input type="number" class="month" id="month" placeholder="MM" />
+            <span id="month_span">Must be valid month</span>
+          </div>
+          <div class="innerdatebox">
+            <p>YEAR</p>
+            <input type="number" class="year" id="year" placeholder="YYYY" />
+            <span id="year_span">Must be valid year</span>
+          </div>
+        </div>
+
+        <!-- Second Container for line -->
+
+        <div class="designbox">
+          <div class="line"></div>
+          <button class="round" onclick="checkDate()">
+            <img
+              src="assets/images/icon-arrow.png"
+              alt=""
+              height="30px"
+              width="30px"
+            />
+          </button>
+        </div>
+
+        <!-- Third Container for Result -->
+
+        <div class="resultbox">
+          <div class="innerresultbox">
+            <p id="years_ans">- -</p>
+            <p id="months_ans">- -</p>
+            <p id="days_ans">- -</p>
+          </div>
+          <div class="innertextbox">
+            <p class="years_text">years</p>
+            <p class="months_text">months</p>
+            <p class="days_text">days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        class="links"
+        >Frontend Mentor </a
+      >. Coded by <a href="#">Patil Prashant </a>.
+    </div>
+  </body>
+</html>
