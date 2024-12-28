@@ -54,7 +54,5 @@ In this age calculator project You will learn logical concept of age calculating
 
 <h2>📬 Contact</h2>
 
-Feel free to reach me through the below handles if you'd like to contact me.
-
-[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/prashant-patil-6a)
-[![instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/mr_prashant82/)
+Feel free to reach me through the below handles if you'd like to contact me.</br></br>
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/mr_prashant82) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/i-am-patil-prashant) 
